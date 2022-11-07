@@ -1,4 +1,4 @@
-name: ci
+name: build and publish to docker hub
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
-            NODE_VERSION=lts
+            NODE_VERSION=latest
           tags: |
             mikatux/node-auto-start:latest
       -
@@ -40,7 +40,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./lts.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
